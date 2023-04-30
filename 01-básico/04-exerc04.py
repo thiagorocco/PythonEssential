@@ -1,0 +1,1 @@
+print('Oi, querida.Não se preocupe, isso não é um vírus.')
