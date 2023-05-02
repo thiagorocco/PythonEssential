@@ -1,20 +1,26 @@
 opcao = 3
-jogador1 = ''
-jogador2 = ''
-matriz = [['-' for i in range(4)]for j in range(4)]
+jogador1 = 'X'
+jogador2 = 'O'
+tabuleiro = [[0 for i in range(3)]for j in range(3)]
 
-while opcao!= 1 and opcao != 2:
-    opcao = int(input('Escolha a opção 1 para jogar com "X" e 2 para jogar com "O": '))
+def imprimir():
+    for i in range(3):
+        for j in range(3):
+            print("%4d" % tabuleiro[i][j], end='')
+        print()
 
-if opcao == 1:
-    jogador1 = 'X'
-    jogador2 = 'O'
-elif opcao == 2:
-    jogador1 = 'O'
-    jogador2 = 'X'
+def checagem():
 
-controle = True
+    for i in range(3):
+        for j in range(3):
+            if i==0:    
+                linha1[j] = matriz[i][j]
+            if i==1:    
+                linha2[j] = matriz[i][j]
+            if i==2:    
+                linha3[j] = matriz[i][j]
 
-while controle:
-    
-    print('Jogador 1 informe em qual casa deseja marcar')
+    if linha1.count('X') == 3:
+        print('Jogador 1 é o vencedor')
+    elif linha1.count('O') == 3:
+        print('Jogador 2 é o vencedor')
