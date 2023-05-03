@@ -8,6 +8,9 @@
     São mutáveis assim como as listas
 
     São usados para mapeamento, pois mapeiam sua chave com seu valor.
+
+*** Um dicionário não pode ter duas chaves iguais. Já um valor pode se repetir várias vezes. ***
+
 '''
 #Observe que não existe uma sequência lógica ou óbvia das chaves que seriam os índices
 meuCachorro = {'raca':'bulldog','idade':3,'nome':'Totó'}
