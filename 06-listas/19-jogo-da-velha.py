@@ -1,4 +1,3 @@
-opcao = 3
 jogador1 = 'X'
 jogador2 = 'O'
 tabuleiro = [[0 for i in range(3)]for j in range(3)]
