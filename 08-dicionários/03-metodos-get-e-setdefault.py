@@ -21,6 +21,6 @@ else:
     print('Aluno existente')
 
 #Testando Método setdefault
-notas.setdefault('Maria', 8)
+notas.setdefault('Kayla', 8)
 notas.setdefault('Bruce', 8)
 print(notas)

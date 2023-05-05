@@ -1,21 +1,147 @@
-from nis import match
+''''
+Uma escola te contratou para fazer um software em Python.
+Eles querem que você crie um script que exiba o seguinte menu:
 
+0. Sair
+1. Exibir lista de alunos com suas notas (cada aluno tem uma nota)
+2. Inserir aluno e nota
+3. Alterar a nota de um aluno
+4. Consultar nota de um aluno específico
+5. Apagar um aluno da lista
+6. Dar a média da turma
 
-print('*** PROGRAMA CONTROLE DE NOTAS E ALUNOS ***')
-print('** Informe uma das opções abaixo: **')
-print()
-print('0. Sair')
-print('1. Exibir lista de alunos com suas notas (cada aluno tem uma nota)')
-print('2. Inserir aluno e nota')
-print('3. Alterar a nota de um aluno')
-print('4. Consultar nota de um aluno específico')
-print('5. Apagar um aluno da lista')
-print('6. Dar a média da turma')
+Onde a professora que vai fornecer o nome e nota dos alunos. 
+Quantos ela quiser. Quantas vezes quiser.
+Implemente esse script usando um dicionário.
+'''
+import os
+import platform
 
-dia = 'Sábado'
+syop = platform.system()
+op = ''
+nome = ''
+nota = 0.0
+media = 0.0
 
-match dia:
-    case 'Sábado' | 'Domingo':
-        print('Fim de semana')
-    case _:
-        print('Dia útil')
+notas = {
+        'Andreia'   : 7.5,
+        'Breno'     : 8.4,
+        'Carla'     : 9.7,
+        'Danilo'    : 8.3,
+        'Eduardo'   : 7.2
+        }
+
+def limparTela():
+    if syop == 'Windows':
+        os.system('cls')
+    elif syop == 'Linux':
+        os.system('clear')
+
+def listarAlunos(listaCompleta=True):
+    if listaCompleta:
+        print('LISTA DE ALUNOS E NOTAS:\n')
+        print('ALUNOS\t\t\tNOTAS')
+        for nome in notas.keys():
+            print(f"{nome}\t\t\t{notas[nome]}")
+    else:
+        print('LISTA DE ALUNOS:')
+        print('ALUNOS')
+        for nome in notas.keys():
+            print(f"{nome}")
+
+def cadastrarAluno():
+    nome = input('Informe o nome do novo aluno: ')
+    nota = float(input('Informe a nota do novo aluno: '))
+
+    if notas.get(nome):
+        print('Já existe um aluno cadastrado com esse nome')
+        print('Veja a lista abaixo e tente novamente com outro nome:')
+        listarAlunos()
+    else:
+        notas[nome] = nota
+        print('Cadastro efetuado com sucesso')
+
+def alterarNota():
+    nome = input('Informe o nome do aluno que deseja alterar a nota: ')
+    if nome in notas.keys():
+        nota = float(input('Informe a nova nota: '))
+        notas[nome] = nota
+        print('Nota alterada com sucesso!')
+    else:
+        print('Não existe aluno cadastrado com esse nome!')
+
+def notaIndividual():
+    nome = input('Qual dos alunos deseja consultar a nota?: ')
+
+    if nome in notas.keys():
+        print('Nome: ',nome,' - Nota: ',notas[nome])
+    else:
+        print('Não existe aluno com esse nome.')
+
+def removerAluno():
+    nome = input('Qual dos alunos deseja EXCLUIR?: ')
+    if nome in notas.keys():
+        op = input(f'Tem certeza que deseja excluir o aluno {nome}? Digite novamente o nome dele: ')
+        if op == nome:
+            notas.pop(nome)
+            print('Aluno',nome,'excluído com sucesso')
+        else:
+            print('Exclusão cancelada.')
+    else:
+        print('Não há alunos a excluir com esse nome')
+
+def mediaNotas():
+    for nome in notas.keys():
+        media += notas[nome]
+                
+  
+
+while op != '0':
+    limparTela()
+    print('*** PROGRAMA CONTROLE DE NOTAS E ALUNOS ***')
+    print('** Informe uma das opções abaixo: **')
+    print()
+    print('0. Sair')
+    print('1. Exibir lista de alunos com suas notas')
+    print('2. Inserir aluno e nota')
+    print('3. Alterar a nota de um aluno')
+    print('4. Consultar nota de um aluno específico')
+    print('5. Apagar um aluno da lista')
+    print('6. Dar a média da turma')
+    print()
+    op = input('===>> Digite a opção desejada: ')
+
+    if op == '0':
+        limparTela()
+        print('Encerrando o programa')   
+    elif op == '1':
+        limparTela()
+        listarAlunos()
+        input('Pressione alguma tecla para continuar ...')
+    elif op == '2':
+        limparTela()
+        cadastrarAluno()
+        input('Pressione alguma tecla para continuar ...')
+    elif op == '3':
+        limparTela()
+        listarAlunos()
+        alterarNota()
+        input('Pressione alguma tecla para continuar ...')   
+    elif op == '4':
+        limparTela()
+        listarAlunos(False)
+        notaIndividual()
+        input('Pressione alguma tecla para continuar ...')  
+    elif op == '5':
+        limparTela()
+        listarAlunos(False)
+        removerAluno()
+        input('Pressione alguma tecla para continuar ...')       
+    elif op == '6':
+        limparTela()
+        print('Média da turma')
+        input('Pressione alguma tecla para continuar ...')
+    else:
+        limparTela()
+        print('Opção incorreta. Tente novamente.')
+        input('Pressione alguma tecla para continuar ...')
