@@ -21,7 +21,8 @@ syop = platform.system()
 op = ''
 nome = ''
 nota = 0.0
-media = 0.0
+soma = 0
+media = 0
 
 notas = {
         'Andreia'   : 7.5,
@@ -91,9 +92,13 @@ def removerAluno():
         print('Não há alunos a excluir com esse nome')
 
 def mediaNotas():
+    soma = 0
+    media = 0
     for nome in notas.keys():
-        media += notas[nome]
-                
+        soma += notas[nome]
+
+    media = soma/len(notas)
+    print('A média de notas da turma = ',media)    
   
 
 while op != '0':
@@ -139,7 +144,7 @@ while op != '0':
         input('Pressione alguma tecla para continuar ...')       
     elif op == '6':
         limparTela()
-        print('Média da turma')
+        mediaNotas()
         input('Pressione alguma tecla para continuar ...')
     else:
         limparTela()
