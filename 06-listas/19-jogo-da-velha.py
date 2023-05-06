@@ -1,6 +1,11 @@
+import os
+import platform
+
+so = platform.system()
+
 jogador1 = 'X'
 jogador2 = 'O'
-tabuleiro = [[0 for i in range(3)]for j in range(3)]
+tabuleiro = [['0' for i in range(3)]for j in range(3)]
 linha1 = []
 linha2 = []
 linha3 = []
@@ -10,13 +15,16 @@ col3 = []
 controle = True
 
 def imprimir():
-    print('Co1\tCol2\tCol3')
+    print("\tC0\tC1\tC2")
     for i in range(3):
         for j in range(3):
-            print('L',i,"%4d" % tabuleiro[i][j], end='')
+            if j==0:
+                print(f"L{i}\t{tabuleiro[i][j]}", end='')
+            else:
+                print(f"\t{tabuleiro[i][j]}", end='')    
         print()
 
-def checagem():
+def checarVitoria():
 
     for i in range(3):
         for j in range(3):
@@ -60,5 +68,13 @@ def checagem():
         print('Jogador 2 é o vencedor')
         controle = False
 
-imprimir()
-    
+def jogar():
+    while controle:    
+        limpar = 'cls' if so == 'Windows' else 'clear'
+        os.system(limpar) or None
+        vez = 0
+        imprimir()
+        input('Jogar. Escolha uma coluna entre 0 e 2: ')
+        input('Jogar. Escolha uma linha entre 0 e 2: ')
+
+jogar()    
