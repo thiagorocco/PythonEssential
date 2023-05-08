@@ -3,13 +3,12 @@ import platform
 
 jogador = ''
 tabuleiro = [['-' for i in range(3)]for j in range(3)]
-linha1 = []
-linha2 = []
-linha3 = []
-col1 = []
-col2 = []
-col3 = []
-controle = True
+linha1 = ['-','-','-']
+linha2 = ['-','-','-']
+linha3 = ['-','-','-']
+col1 = ['-','-','-']
+col2 = ['-','-','-']
+col3 = ['-','-','-']
 coluna = ''
 linha = ''
 
@@ -46,35 +45,35 @@ def checarVitoria():
 
     if linha1.count('X') == 3 or linha2.count('X') == 3 or linha3.count('X')==3:
         print('Jogador 1 é o vencedor')
-        controle = False
+        return False
     elif linha1.count('O') == 3 or linha2.count('O') == 3 or linha3.count('O')==3:
         print('Jogador 2 é o vencedor')
-        controle = False
-
+        return False
     if col1.count('X') == 3 or col2.count('X') == 3 or col3.count('X')==3:
         print('Jogador 1 é o vencedor')
-        controle = False
+        return False
     elif col1.count('O') == 3 or col2.count('O') == 3 or col3.count('O')==3:
         print('Jogador 2 é o vencedor')
-        controle = False
-    
+        return False
+
     #Diagonais
     if linha1[0] == 'X' and linha2[1]=='X' and linha3[2]=='X':
         print('Jogador 1 é o vencedor')
-        controle = False
+        return False
     elif linha1[2] == 'X' and linha2[1]=='X' and linha3[0]=='X':
         print('Jogador 1 é o vencedor')
-        controle = False
-    
+        return False
     if linha1[0] == 'O' and linha2[1]=='O' and linha3[2]=='O':
         print('Jogador 2 é o vencedor')
-        controle = False
+        return False
     elif linha1[2] == 'O' and linha2[1]=='O' and linha3[0]=='O':
         print('Jogador 2 é o vencedor')
-        controle = False
+        return False
+    return True
 
 def jogar():
     vez = 1
+    controle = True
     while controle:    
         validar = True
         while validar:
@@ -97,6 +96,8 @@ def jogar():
                 tabuleiro[linha-1][coluna-1] = jogador
                 validar = False
                 vez += 1
-        checarVitoria()
+
+        controle = checarVitoria()
+    print('*** Fim de jogo ***')
 
 jogar()    
