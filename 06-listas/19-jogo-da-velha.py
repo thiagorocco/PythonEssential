@@ -3,12 +3,12 @@ import platform
 
 jogador = ''
 tabuleiro = [['-' for i in range(3)]for j in range(3)]
-linha1 = ['-','-','-']
-linha2 = ['-','-','-']
-linha3 = ['-','-','-']
-col1 = ['-','-','-']
-col2 = ['-','-','-']
-col3 = ['-','-','-']
+linha1 = ['-' for i in range(3)]
+linha2 = ['-' for i in range(3)]
+linha3 = ['-' for i in range(3)]
+col1 = ['-' for i in range(3)]
+col2 = ['-' for i in range(3)]
+col3 = ['-' for i in range(3)]
 coluna = ''
 linha = ''
 
@@ -83,20 +83,26 @@ def jogar():
             else:
                 jogador = 'O'
 
-            linha = int(input(f'Jogador "{jogador}", escolha uma linha entre 1 e 3: '))
-            coluna = int(input(f'Jogador "{jogador}", escolha uma coluna entre 1 e 3: '))
-                        
-            if coluna > 3 or coluna < 1 or linha > 3 or linha < 1:
-                print('Posição inválida! Escolha os valores 1,2 ou 3 para as linhas e colunas')
-                input('Pressione qualquer tecla para continuar...')
-            elif tabuleiro[linha-1][coluna-1] != '-':
-                print('Posição já preenchida! Escolha outra')
-                input('Pressione qualquer tecla para continuar...')
-            else:
-                tabuleiro[linha-1][coluna-1] = jogador
-                validar = False
-                vez += 1
+            linha = input(f'Jogador "{jogador}", escolha uma linha entre 1 e 3: ')
+            coluna = input(f'Jogador "{jogador}", escolha uma coluna entre 1 e 3: ')
 
+            if linha.isnumeric() and coluna.isnumeric():
+                linha = int(linha)
+                coluna = int(coluna)
+                if coluna > 3 or coluna < 1 or linha > 3 or linha < 1:
+                    print('Posição inválida! Escolha os valores 1, 2 ou 3 para as linhas e colunas')
+                    input('Pressione qualquer tecla para continuar...')
+                elif tabuleiro[linha-1][coluna-1] != '-':
+                    print('Posição já preenchida! Escolha outra')
+                    input('Pressione qualquer tecla para continuar...')
+                else:
+                    tabuleiro[linha-1][coluna-1] = jogador
+                    validar = False
+                    vez += 1
+            else:
+                print('Somente números inteiros de 1 a 3 são válidos para as posições!!!')
+                input('Pressione qualquer tecla para continuar...')
+        imprimir()
         controle = checarVitoria()
     print('*** Fim de jogo ***')
 
