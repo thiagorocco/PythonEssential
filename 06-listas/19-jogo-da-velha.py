@@ -1,11 +1,8 @@
 import os
 import platform
 
-so = platform.system()
-
-jogador1 = 'X'
-jogador2 = 'O'
-tabuleiro = [['0' for i in range(3)]for j in range(3)]
+jogador = ''
+tabuleiro = [['-' for i in range(3)]for j in range(3)]
 linha1 = []
 linha2 = []
 linha3 = []
@@ -13,13 +10,21 @@ col1 = []
 col2 = []
 col3 = []
 controle = True
+coluna = ''
+linha = ''
+
+def limparTela():
+    so = platform.system()
+    limpar = 'cls' if so == 'Windows' else 'clear'
+    os.system(limpar) or None
 
 def imprimir():
-    print("\tC0\tC1\tC2")
+    limparTela()
+    print("\tC1\tC2\tC3")
     for i in range(3):
         for j in range(3):
             if j==0:
-                print(f"L{i}\t{tabuleiro[i][j]}", end='')
+                print(f"L{i+1}\t{tabuleiro[i][j]}", end='')
             else:
                 print(f"\t{tabuleiro[i][j]}", end='')    
         print()
@@ -69,12 +74,29 @@ def checarVitoria():
         controle = False
 
 def jogar():
+    vez = 1
     while controle:    
-        limpar = 'cls' if so == 'Windows' else 'clear'
-        os.system(limpar) or None
-        vez = 0
-        imprimir()
-        input('Jogar. Escolha uma coluna entre 0 e 2: ')
-        input('Jogar. Escolha uma linha entre 0 e 2: ')
+        validar = True
+        while validar:
+            imprimir()
+            if vez%2!=0:
+                jogador = 'X'
+            else:
+                jogador = 'O'
+
+            linha = int(input(f'Jogador "{jogador}", escolha uma linha entre 1 e 3: '))
+            coluna = int(input(f'Jogador "{jogador}", escolha uma coluna entre 1 e 3: '))
+                        
+            if coluna > 3 or coluna < 1 or linha > 3 or linha < 1:
+                print('Posição inválida! Escolha os valores 1,2 ou 3 para as linhas e colunas')
+                input('Pressione qualquer tecla para continuar...')
+            elif tabuleiro[linha-1][coluna-1] != '-':
+                print('Posição já preenchida! Escolha outra')
+                input('Pressione qualquer tecla para continuar...')
+            else:
+                tabuleiro[linha-1][coluna-1] = jogador
+                validar = False
+                vez += 1
+        #checarVitória
 
 jogar()    
