@@ -97,6 +97,6 @@ def jogar():
                 tabuleiro[linha-1][coluna-1] = jogador
                 validar = False
                 vez += 1
-        #checarVitória
+        checarVitoria()
 
 jogar()    
