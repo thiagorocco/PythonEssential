@@ -1,4 +1,4 @@
-path = 'C:/PythonCodes/PythonProgressivo/09-arquivos/linguagens.txt'
+path = 'C:\\PythonCodes\\PythonProgressivo\\09-arquivos\\linguagens.txt'
 arquivo = open(path, 'r')
 num = int(input("Numero de linguagens: "))
 count=0
