@@ -1,3 +1,7 @@
+'''
+truncate() - Retira o que tem no arquivo
+
+'''
 import os.path
 
 op=1
