@@ -25,4 +25,13 @@ print(texto[0])
 #Exibindo partes da string com texto[inicio:fim], texto[a partir de:] e texto[:até tantas posições]
 print(texto[0:5])#resultado: 'Curso ' 
 print(texto[6:])#resultado: 'de Python Progressivo 
-print(texto[:7])#resultado: 'Curso d' 
+print(texto[:7])#resultado: 'Curso d'
+
+#Tamanho de uma string com len()
+print('Tamanho da string: ',len(texto))
+
+#Concatenar com o operador '+'
+frase1 = 'Curso de'
+frase2 = 'Python Progressivo'
+frase3 = frase1+' '+frase2
+print(frase3)
