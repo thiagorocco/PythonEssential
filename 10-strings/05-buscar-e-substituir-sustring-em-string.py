@@ -18,14 +18,16 @@ else:
 
 
 lista = ['Aldo','Ernesto','Francisco Luiz','Francisco José','Eduardo','José Francisco','João Francisco']
+busca = 'Francisco'
+
 #startswith()
-print('Usando startswith')
+print(f'*** Usando startswith com a busca {busca}***')
 for nomes in lista:
-    if nomes.startswith('Francisco'):
+    if nomes.startswith(busca):
         print(nomes)
 
 #find()
-print('Usando find')
+print('*** Usando find ***')
 for nomes in lista:
-    if nomes.find('Francisco'):
+    if nomes.find(busca):
         print(nomes)
