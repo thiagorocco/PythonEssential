@@ -7,5 +7,6 @@ apagar uma lista: clear()
 copiar uma lista: copy()
 contar quantas vezes um item aparece: count(x)
 retirar um elemento específico da linha: pop(x)
+verificar se lista é vazia: if not lista:
 '''
 
