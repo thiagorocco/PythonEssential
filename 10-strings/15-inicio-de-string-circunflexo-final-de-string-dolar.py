@@ -31,7 +31,7 @@ texto = input("Final de string - Digite sua string: " )
 minhaRegex = re.findall(r'\.\w{3}$', texto)
 print(minhaRegex)
 
-#Detecta padrões compostos somente por dígitos, com um ou mais presente, senão dá erro
+#Detecta padrões compostos somente por dígitos, com um ou mais presente, senão tiver dígitos dá erro
 texto = input("Padrões compostos só por dígitos - Digite sua string: " )
 
 minhaRegex = re.compile(r'^(\d)+$')
