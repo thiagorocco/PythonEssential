@@ -5,13 +5,12 @@
 '''
 class Carro:
     portas = 4
-    automatica = ''
  
     def __init__(self):
         print("Carro criado")
-    def exibirPortas(self,tipoPorta):
+    def exibirPortas(self):
         self.automatica = tipoPorta
-        return self.portas,self.automatica
+        return self.portas
  
 veloster = Carro()
-print("Numero de portas:", veloster.exibirPortas('Automática'))
+print("Numero de portas:", veloster.exibirPortas())
