@@ -32,4 +32,8 @@ floor(x)
 
 Arredondar para cima
 ceil(x)
+
+Arrendondar para cima ou para baixo dependendo o valor - < 5 para baixo, senão para cima
+round(x) 
+
 '''
