@@ -1,5 +1,9 @@
 '''
-    Inserindo registros no banco de dados
+    Excluindo registros no banco de dados
+
+    CUIDADO ao usar DELETE! 
+    Se executar esse comando "DELETE FROM nome_tabela" vai excluir todos os registros!
+    Sempre após o nome da tabela insera o WHERE
 '''
 import sqlite3
 from sqlite3 import Error
@@ -13,23 +17,17 @@ def dbConnection():
         print(ex)
     return connection
 
-def inserir(conexao, sql):
+def deletar(conexao, sql):
     try:
         c=conexao.cursor()
         c.execute(sql)
         conexao.commit()
-        print('Registro inserido')
     except Error as ex:
         print(ex)
+    finally:
+        print('Registro excluído')
 
-nome = input('Digite o nome: ')
-telefone = input('Digite o telefone: ')
-email = input('Digite o email: ')
 
 vcon = dbConnection()
-
-vsql = f"""INSERT INTO tb_contatos
-            (T_NOMECONTATO, T_TELEFONECONTATO, T_EMAILCONTATO)
-          VALUES('{nome}','{telefone}','{email}')"""
-
-inserir(vcon,vsql)
+vsql = f"DELETE FROM tb_contatos WHERE N_IDCONTATO=2"
+deletar(vcon, vsql)

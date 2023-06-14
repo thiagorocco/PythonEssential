@@ -2,7 +2,7 @@
 '''
     Nas listas, os valores vinham entre colchetes: [ ]
     
-    Nas tuplas, os valores vem enter parêntesis: ( )
+    Nas tuplas, os valores vem enter parenteses: ( )
 '''
 
 #Exemplo de tupla:
