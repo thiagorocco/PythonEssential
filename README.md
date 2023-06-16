@@ -10,8 +10,8 @@
 8. Dicionários<br>
 9. Arquivos<br>
 10. Strings<br>
-11. Data
+11. Data<br>
 12. OO(Orientação a objetos)<br>
 13. GUI(Graphical User Interface/Interface Gráfica do Usuário)<br>
-14. Banco de Dados
-15. PyQt
+14. Banco de Dados<br>
+15. PyQt<br>
