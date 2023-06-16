@@ -1,5 +1,5 @@
-<h1 align="center">Python Study</h1>
-<h3>Repositório de estudos da linguagem Python</h3>
+<h1 align="center">Python Essential</h1>
+<h3>Essencial da linguagem Python</h3>
 1. Básico<br>
 2. Testes condicionais<br>
 3. Laços e loopings<br>
