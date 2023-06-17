@@ -10,7 +10,7 @@ from sqlite3 import Error
 
 #Conexão e/ou criação do banco de dados
 def conectar():
-    caminho = 'banco-de-dados\\baseSqlite.db'
+    caminho = '14-banco-de-dados\\baseSqlite.db'
     try:
         conn = sqlite3.connect(caminho)
         return conn
@@ -40,12 +40,15 @@ def createTable(conn,tabela,campos):
 
 #### CRUD - Operações de criação, leitura, edição(alteração) e exclusão dos registros ####
 
-def create(conn,tabela,dados):
+def create(conn,tabela,fields,values):
     try:
-        c = conn.cursor()
-        #usar um método explode para pegar chaves e valores de dados
-        #depois ver quantos campos de chave e valor tem para inserir na instrução abaixo
-        instruction = f'INSERTO INTO {tabela}() VALUES ()'
+        cursor = conn.cursor()
+        campos = ','.join(fields)
+        valores = ','.join(values)
+        instruction = f'INSERT INTO {tabela}({campos}) VALUES ({valores})'
+        cursor.execute(instruction)
+        conn.commit()
+        conn.close()
         print('Registro inserido com sucesso!')
     except Error as ex:
         print(f'Erro de execução = {ex}')
@@ -59,8 +62,10 @@ def delete(conn, id):
     print()
 
 tabela = 'produtos'
-campos = {'id':'integer auto increment',
-          'prod':'varchar(80)',
-          'preco':'double(5,2)'}
+campos = {'id':'INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL',
+          'prod':'VARCHAR(80)',
+          'preco':'DOUBLE(5,2)'}
 
+#conectar()
 #createTable(conectar(),tabela,campos)
+#create(conectar(),tabela,['prod','preco'],['\'Caderno\'','19.99'])

@@ -8,5 +8,10 @@ copiar uma lista: copy()
 contar quantas vezes um item aparece: count(x)
 retirar um elemento específico da linha: pop(x)
 verificar se lista é vazia: if not lista:
+
+array para string: Converte um array para strin com join.
+Ex: minhaString = " ".join(['Python','é','ótimo']) print(minhaString)
+Resultado: 'Python é ótimo'
+
 '''
 
