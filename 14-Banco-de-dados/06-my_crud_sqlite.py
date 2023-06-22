@@ -52,8 +52,16 @@ def create(conn,tabela,fields,values):
         print('Registro inserido com sucesso!')
     except Error as ex:
         print(f'Erro de execução = {ex}')
-def read(conn):
-    print()
+def read(conn,tabela):
+    try:
+        cursor = conn.cursor()
+        cursor.execute(f'SELECT * FROM {tabela}')
+
+        resultado = cursor.fetchall()
+        for r in resultado:
+            print(r) 
+    except Error as ex:
+        print(f'Erro de conexão: {ex}')
 
 def edit(conn, id):
     print()
@@ -69,3 +77,4 @@ campos = {'id':'INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL',
 #conectar()
 #createTable(conectar(),tabela,campos)
 #create(conectar(),tabela,['prod','preco'],['\'Caderno\'','19.99'])
+read(conectar(),tabela)
