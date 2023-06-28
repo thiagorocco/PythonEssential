@@ -78,3 +78,5 @@ campos = {'id':'INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL',
 #createTable(conectar(),tabela,campos)
 #create(conectar(),tabela,['prod','preco'],['\'Caderno\'','19.99'])
 #read(conectar(),tabela)
+#update(conectar(),tabela,campos,id)
+#delete
