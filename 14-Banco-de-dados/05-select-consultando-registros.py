@@ -6,7 +6,8 @@ import sqlite3
 from sqlite3 import Error
 
 def dbConnection():
-    path = '14-Banco-de-dados\\agenda.db'
+    #path = '14-Banco-de-dados\\agenda.db'
+    path = 'agenda.db'
     connection = None    
     try:
         connection = sqlite3.connect(path)

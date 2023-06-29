@@ -11,12 +11,12 @@ from sqlite3 import Error
 #Conexão e/ou criação do banco de dados
 def conectar():
     #caminho = '14-banco-de-dados\\baseSqlite.db'
-    caminho = 'baseSqlite.db'
+    caminho = "baseSqlite.db"
     try:
         conn = sqlite3.connect(caminho)
         return conn
-    except:
-        print('Falha na conexão com o banco de dados')
+    except Error as ex:
+        print('Falha na conexão com o banco de dados: ',ex)
 
 #Criação de Tabelas
 def createTable(conn,tabela,campos):
@@ -75,9 +75,12 @@ campos = {'id':'INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL',
           'prod':'VARCHAR(80)',
           'preco':'DOUBLE(5,2)'}
 
-#conectar()
+prod = 'Chapeú'
+preco = 84.99
+
+conectar()
 #createTable(conectar(),tabela,campos)
-create(conectar(),tabela,["prod","preco"],["'Calça'","'39.99'"])
+#create(conectar(),tabela,["prod","preco"],[f"'{prod}'",f"'{preco}'"])
 #read(conectar(),tabela)
 #update(conectar(),tabela,campos,id)
 #delete
