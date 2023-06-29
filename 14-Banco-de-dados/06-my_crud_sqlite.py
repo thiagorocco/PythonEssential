@@ -10,7 +10,8 @@ from sqlite3 import Error
 
 #Conexão e/ou criação do banco de dados
 def conectar():
-    caminho = '14-banco-de-dados\\baseSqlite.db'
+    #caminho = '14-banco-de-dados\\baseSqlite.db'
+    caminho = 'baseSqlite.db'
     try:
         conn = sqlite3.connect(caminho)
         return conn
@@ -45,7 +46,7 @@ def create(conn,tabela,fields,values):
         cursor = conn.cursor()
         campos = ','.join(fields)
         valores = ','.join(values)
-        instruction = f'INSERT INTO {tabela}({campos}) VALUES ({valores})'
+        instruction = f"INSERT INTO {tabela} ({campos}) VALUES ({valores})"
         cursor.execute(instruction)
         conn.commit()
         conn.close()
@@ -76,7 +77,7 @@ campos = {'id':'INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL',
 
 #conectar()
 #createTable(conectar(),tabela,campos)
-#create(conectar(),tabela,['prod','preco'],['\'Caderno\'','19.99'])
+create(conectar(),tabela,["prod","preco"],["'Calça'","'39.99'"])
 #read(conectar(),tabela)
 #update(conectar(),tabela,campos,id)
 #delete
