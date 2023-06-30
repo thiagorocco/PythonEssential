@@ -91,6 +91,7 @@ def delete(conn, tabela, id):
     except Error as ex:
         print('Erro: ',ex)
 
+
 tabela = 'produtos'
 campos = {'id':'INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL',
           'prod':'VARCHAR(80)',
@@ -98,10 +99,53 @@ campos = {'id':'INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL',
 
 prod = 'Caderno'
 preco = 24.99
-
 #conectar()
 #createTable(conectar(),tabela,campos)
 #create(conectar(),tabela,["prod","preco"],[f"'{prod}'",f"'{preco}'"])
 #read(conectar(),tabela)
 #edit(conectar(),tabela,"prod='Casaco',preco='224.99'",2)
 #delete(conectar(),tabela,3)
+
+while True:
+    os.system('clear')or None
+    print('*** CRUD COM SQLITE ***')
+    print()
+    print('1 - Inserir novo produto')
+    print('2 - Listar produtos cadastrados')
+    print('3 - Alterar um produto')
+    print('4 - Excluir um produto')
+    print('5 - Sair')
+
+    op = input('Digite a opção desejada: ')
+
+    match op:
+        case '1':
+            os.system('clear')or None
+            print('*** Cadastro de produto ***')
+            input()
+            #create
+        case '2':
+            os.system('clear')or None
+            print('Listando os produtos cadastrados')
+            input()
+            #read()
+        case '3':
+            os.system('clear')or None
+            print('Alteração de produto')
+            input()
+            #edit()
+        case '4':
+            os.system('clear')or None
+            print('Exclusão de produto')
+            input()
+            #delete()
+        case '5':
+            break
+        case _:
+            os.system('clear')or None
+            print('Opção inválida. Digite uma das opção acima de 1 a 5')
+            input()
+
+
+
+
