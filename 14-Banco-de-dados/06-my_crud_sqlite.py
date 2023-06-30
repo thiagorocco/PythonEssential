@@ -27,16 +27,16 @@ def createTable(conn,tabela,campos):
         cursor = conn.cursor()
         tam = len(campos)
         i = 1
-        instruction = f'CREATE TABLE {tabela}('
+        sql = f'CREATE TABLE {tabela}('
         for campo in campos.keys():
             if i < tam:
-                instruction += f'{campo} {campos[campo]},'
+                sql += f'{campo} {campos[campo]},'
             else:
-                instruction += f'{campo} {campos[campo]}'
+                sql += f'{campo} {campos[campo]}'
             i += 1    
 
-        instruction += ');'
-        cursor.execute(instruction)
+        sql += ');'
+        cursor.execute(sql)
         conn.close()
         print(f'Tabela {tabela} cadastrada com sucesso!')
     except Error as ex:
@@ -49,8 +49,8 @@ def create(conn,tabela,fields,values):
         cursor = conn.cursor()
         campos = ','.join(fields)
         valores = ','.join(values)
-        instruction = f"INSERT INTO {tabela} ({campos}) VALUES ({valores})"
-        cursor.execute(instruction)
+        sql = f"INSERT INTO {tabela} ({campos}) VALUES ({valores})"
+        cursor.execute(sql)
         conn.commit()
         conn.close()
         print('Registro inserido com sucesso!')
@@ -58,17 +58,27 @@ def create(conn,tabela,fields,values):
         print(f'Erro de execução = {ex}')
 def read(conn,tabela):
     try:
+        sql = f'SELECT * FROM {tabela}'
         cursor = conn.cursor()
-        cursor.execute(f'SELECT * FROM {tabela}')
+        cursor.execute(sql)
 
         resultado = cursor.fetchall()
         for r in resultado:
-            print(r) 
+            print(r)
+        conn.close() 
     except Error as ex:
         print(f'Erro de conexão: {ex}')
 
-def edit(conn, id):
-    print()
+def edit(conn, tabela, campos, id):
+    try:
+        sql = f"UPDATE {tabela} SET {campos} WHERE id={id}"
+        cursor = conn.cursor()
+        cursor.execute(sql)
+        conn.commit()
+        conn.close()
+        print('Produto alterado com sucesso')
+    except Error as ex:
+        print('Erro: ',ex)
 
 def delete(conn, id):
     print()
@@ -84,6 +94,7 @@ preco = 24.99
 #conectar()
 #createTable(conectar(),tabela,campos)
 #create(conectar(),tabela,["prod","preco"],[f"'{prod}'",f"'{preco}'"])
-read(conectar(),tabela)
-#update(conectar(),tabela,campos,id)
+#read(conectar(),tabela)
+#edit(conectar(),tabela,"prod='Casaco',preco='224.99'",2)
+
 #delete
