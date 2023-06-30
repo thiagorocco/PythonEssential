@@ -5,13 +5,16 @@
 
     Após qualquer interação com o banco de dados feche a conexão com close()
 '''
+import os
 import sqlite3
 from sqlite3 import Error
 
 #Conexão e/ou criação do banco de dados
 def conectar():
-    #caminho = '14-banco-de-dados\\baseSqlite.db'
-    caminho = "baseSqlite.db"
+    dir_codigo = os.path.dirname(os.path.abspath(__file__))
+    nome_bd = 'baseSqlite.db'
+    caminho = os.path.join(dir_codigo,nome_bd)
+
     try:
         conn = sqlite3.connect(caminho)
         return conn
@@ -75,12 +78,12 @@ campos = {'id':'INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL',
           'prod':'VARCHAR(80)',
           'preco':'DOUBLE(5,2)'}
 
-prod = 'Chapeú'
-preco = 84.99
+prod = 'Caderno'
+preco = 24.99
 
-conectar()
+#conectar()
 #createTable(conectar(),tabela,campos)
 #create(conectar(),tabela,["prod","preco"],[f"'{prod}'",f"'{preco}'"])
-#read(conectar(),tabela)
+read(conectar(),tabela)
 #update(conectar(),tabela,campos,id)
 #delete
