@@ -80,8 +80,16 @@ def edit(conn, tabela, campos, id):
     except Error as ex:
         print('Erro: ',ex)
 
-def delete(conn, id):
-    print()
+def delete(conn, tabela, id):
+    try:
+       sql = f"DELETE FROM {tabela} WHERE id={id}"
+       cursor = conn.cursor()
+       cursor.execute(sql)
+       conn.commit()
+       conn.close()
+       print('Produto excluído com sucesso!')     
+    except Error as ex:
+        print('Erro: ',ex)
 
 tabela = 'produtos'
 campos = {'id':'INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL',
@@ -96,5 +104,4 @@ preco = 24.99
 #create(conectar(),tabela,["prod","preco"],[f"'{prod}'",f"'{preco}'"])
 #read(conectar(),tabela)
 #edit(conectar(),tabela,"prod='Casaco',preco='224.99'",2)
-
-#delete
+#delete(conectar(),tabela,3)
