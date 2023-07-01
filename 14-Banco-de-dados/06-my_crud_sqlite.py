@@ -11,6 +11,9 @@ from sqlite3 import Error
 
 #Conexão e/ou criação do banco de dados
 def conectar():
+
+    #Aqui obtemos o caminho absoluto do diretório do nosso código e conectamos ou criamos
+    #o nosso banco de dados no mesmo local. Independente do sistema operacional
     dir_codigo = os.path.dirname(os.path.abspath(__file__))
     nome_bd = 'baseSqlite.db'
     caminho = os.path.join(dir_codigo,nome_bd)
@@ -53,7 +56,7 @@ def create(conn,tabela,fields,values):
         cursor.execute(sql)
         conn.commit()
         conn.close()
-        print('Registro inserido com sucesso!')
+        print('Produto cadastrado com sucesso!')
     except Error as ex:
         print(f'Erro de execução = {ex}')
 def read(conn,tabela):
@@ -91,14 +94,15 @@ def delete(conn, tabela, id):
     except Error as ex:
         print('Erro: ',ex)
 
-
+'''
 tabela = 'produtos'
 campos = {'id':'INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL',
           'prod':'VARCHAR(80)',
           'preco':'DOUBLE(5,2)'}
-
 prod = 'Caderno'
 preco = 24.99
+'''
+
 #conectar()
 #createTable(conectar(),tabela,campos)
 #create(conectar(),tabela,["prod","preco"],[f"'{prod}'",f"'{preco}'"])
@@ -118,20 +122,33 @@ while True:
 
     op = input('Digite a opção desejada: ')
 
+    #match ... case, só vai funcionar no python a partir da versão 3.10
     match op:
         case '1':
-            os.system('clear')or None
-            print('*** Cadastro de produto ***')
-            input()
-            #create
+            while True:
+                os.system('clear')or None
+                print('*** Cadastro de produto ***')
+                try:
+                    prod = input('Nome do novo produto: ')
+                    preco = float(input('Preço do novo produto: '))
+                    create(conectar(),'produtos',["prod","preco"],[f"'{prod}','{preco}'"])
+                    input('Pressione qualquer tecla para continuar')
+                    break
+                except:
+                    print("Por favor insira apenas números no preço e separe as casas decimais com ponto(.)")
+                    input('Pressione qualquer tecla para continuar')
         case '2':
             os.system('clear')or None
             print('Listando os produtos cadastrados')
-            input()
-            #read()
+            print('')
+            print("ID   |   DESCRIÇÃO   |   PREÇO")
+            read(conectar(),'produtos')
+            input('Pressione qualquer tecla para continuar')
         case '3':
             os.system('clear')or None
             print('Alteração de produto')
+            read(conectar(),'produtos')
+            input('Informe o código(ID) do produto que deseja alterar: ')
             input()
             #edit()
         case '4':
