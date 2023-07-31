@@ -28,7 +28,7 @@ def imprimir():
                 print(f"\t{tabuleiro[i][j]}", end='')    
         print()
 
-def checarVitoria():
+def checarResultado():
 
     for i in range(3):
         for j in range(3):
@@ -69,6 +69,20 @@ def checarVitoria():
     elif linha1[2] == 'O' and linha2[1]=='O' and linha3[0]=='O':
         print('Jogador 2 é o vencedor')
         return False
+    
+    empate=True
+    for l in range(3):
+        for c in range(3):
+            if tabuleiro[i][c] == '-':
+                empate = False
+                break
+        if empate == False:
+            break
+    if empate:
+        print('Terminou em empate')
+        return False
+    
+    
     return True
 
 def jogar():
@@ -103,7 +117,8 @@ def jogar():
                 print('Somente números inteiros de 1 a 3 são válidos para as posições!!!')
                 input('Pressione qualquer tecla para continuar...')
         imprimir()
-        controle = checarVitoria()
+        controle = checarResultado()
     print('*** Fim de jogo ***')
+    input('Pressione qualquer tecla para continuar...')
 
 jogar()    
