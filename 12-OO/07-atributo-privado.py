@@ -6,4 +6,5 @@ class Funcionario:
         self.__senha = 'senha'
   
 gerente = Funcionario()
+#Vai dar um erro, pois o atributo é privado
 print("Senha do gerente:", gerente.__senha)
