@@ -4,6 +4,7 @@ cliente1 = Cliente('Luiz',32)
 cliente1.insere_endereco('Belo Horizonte','MG')
 print(cliente1.nome)
 cliente1.lista_enderecos()
+#Ao executar o del aqui, o método __del__ lá da classe não será executado
 del cliente1
 print()
 

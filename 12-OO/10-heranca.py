@@ -1,3 +1,9 @@
+'''
+    Na herança as subclasses, classes que herdam da classe mãe
+    todos métodos declaradas nela, inclusive o construtor
+
+    Porém essas herdeiras podem ter seus próprios métodos e atributos
+'''
 class Veiculo:
     def __init__(self,tipo,modelo,km):
         self.tipo = tipo
