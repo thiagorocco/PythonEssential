@@ -2,8 +2,8 @@
     Na agregação, as classes existem de forma independente, porém
     para o correto funcionamento, ambas dependem uma da outra.
 
-    Ex: Carro e rodas. Não faz sentido carro sem rodas
-    Carrinho de Compras e Produto. Não faz sentido Carrinho em produtos
+    Ex: Carro e rodas. Não faz muito sentido carro sem rodas. As rodas sozinhos fazem algum sentido
+    Carrinho de Compras e Produto. Não faz muito sentido Carrinho sem produtos. Os produtos sozinhos fazem sentido
 
 '''
 from agregacaoClasses import CarrinhoDeCompras

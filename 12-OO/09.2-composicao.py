@@ -5,6 +5,9 @@ Damos a isso o nome de composição: combinação de objetos, quando instanciamo
  quando usamos objetos de uma classe dentro de outros objetos.
 
 Vamos ver um exemplo real de situação e código, para entendermos melhor o que é composição na prática.
+
+*** Quando uma classe usa outra classe dentro dela. Ex: Empresa usa Funcionario
+*** Ao remover o objeto de uma o objeto da outra também é apagado. EX: Acabou Empresa, acabou Funcionario
 '''
 class Funcionario:
     def __init__(self, nome):
@@ -32,7 +35,7 @@ class Empresa:
  
  def contratar(self):
   nome = input("Nome: ")
-  self.func.append( Funcionario(nome) )
+  self.func.append(Funcionario(nome))
  
  def exibir(self):
   for funcionario in self.func:
