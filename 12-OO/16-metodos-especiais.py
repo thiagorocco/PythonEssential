@@ -12,8 +12,8 @@
 
     __eq__ compara o valor dos atributos dos objetos definidos na declaração do método
     __hash__ Retorna um número inteiro(positivo ou negativo) único para o atributo do objeto
-    __bool__
-    __del__
+    __bool__ e __len__ Retorna verdadeiro ou falso. Na ausência de bool o __len__ é procurado
+    __del__ se declarado é executado após o garbage collector destruir o objeto
 '''
 class Person:
     def __init__(self, first_name, last_name, age):
@@ -38,6 +38,8 @@ class Person:
         if self.age < 18 or self.age > 65:
             return False
         return True
+    def __del__(self):
+        print('__del__ was called')
 ''' def __eq__(self, other):
         return self.age == other.age'''
 
