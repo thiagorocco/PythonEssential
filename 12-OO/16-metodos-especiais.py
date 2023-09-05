@@ -46,18 +46,20 @@ john = Person('John', 'Doe', 25)
 jane = Person('Jane', 'Doe', 25)
 mary = Person('Mary', 'Doe', 27)
 
-#__str__
+#__str__ e __repr__
 print(person)#Sem o método __str__ mostra o endereço de memória, com o método exibe uma string formatada
 
-#__repr__
+#__eq__
 print(john == jane)# True, sem o método __eq__ seria False, pois são objetos diferentes
 print(john == mary)# False
-
-#__eq__
 print(john == 25)# False, pois o inteiro 25 não é um objeto da classe Person
 
 #__hash__
 print(hash(john))# 7900537227961911167
 print(hash(jane))# 4012414512227509544
 print(hash(mary))# -1061679634863054657
+
+#__bool__
+pessoa = Person('Jane','Austen', 16)
+print(bool(pessoa))# False
 
