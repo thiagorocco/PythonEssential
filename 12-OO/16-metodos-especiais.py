@@ -23,8 +23,10 @@ class Person:
 
     def __repr__(self):
         return f'__rpr__Person("{self.first_name}","{self.last_name}",{self.age})'
+
     def __str__(self):
         return f'__str__Person{self.first_name},{self.last_name},{self.age}'
+
     def __eq__(self, other):
         if isinstance(other, Person):
             return self.age == other.age
@@ -44,13 +46,17 @@ john = Person('John', 'Doe', 25)
 jane = Person('Jane', 'Doe', 25)
 mary = Person('Mary', 'Doe', 27)
 
+#__str__
 print(person)#Sem o método __str__ mostra o endereço de memória, com o método exibe uma string formatada
 
+#__repr__
 print(john == jane)# True, sem o método __eq__ seria False, pois são objetos diferentes
 print(john == mary)# False
+
+#__eq__
 print(john == 25)# False, pois o inteiro 25 não é um objeto da classe Person
 
-#Hash
+#__hash__
 print(hash(john))# 7900537227961911167
 print(hash(jane))# 4012414512227509544
 print(hash(mary))# -1061679634863054657
