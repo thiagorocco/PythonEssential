@@ -33,3 +33,8 @@ class User:
         cursor.execute('INSERT INTO users(name, email) VALUES (?, ?)',(self.name, self.email))
         conn.commit()
         conn.close()
+    
+    @staticmethod
+    def read():
+        pass
+     
