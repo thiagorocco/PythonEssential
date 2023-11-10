@@ -24,4 +24,12 @@ class User:
                 email TEXT,
                 )
                     ''')
-        
+        conn.commit()
+        conn.close()
+    
+    def create(self):
+        conn = User.connect()
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO users(name, email) VALUES (?, ?)',(self.name, self.email))
+        conn.commit()
+        conn.close()
