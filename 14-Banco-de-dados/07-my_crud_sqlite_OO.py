@@ -36,5 +36,15 @@ class User:
     
     @staticmethod
     def read():
-        pass
+        conn = User.connect()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM users')
+        rows = cursor.fetchall()
+        conn.close()
+        users = []
+        for row in rows:
+            user = User(row[1],row[2])
+            user.id = row[0]
+            users.append(user)
+        return users
      
