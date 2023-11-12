@@ -10,7 +10,7 @@ class User:
     
     @staticmethod
     def connect():
-        conn = sqlite3.connect('database.db')
+        conn = sqlite3.connect('bdoo.db')
         return conn
     
     @staticmethod
@@ -21,9 +21,9 @@ class User:
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT,
-                email TEXT,
+                email TEXT
                 )
-                    ''')
+            ''')
         conn.commit()
         conn.close()
     
@@ -74,3 +74,16 @@ class User:
         cursor.execute('DELETE FROM users WHERE id = ?',(self.id))
         conn.commit()
         conn.close()
+
+#Testando o CRUD OO
+
+#Inserindo um registro - CREATE
+#User.create_table()
+#user = User('Cristiane de Rocco','crisfl2009@hotmail.com')
+#user.create()
+
+#Obtendo todos os usuários - READ
+users = User.read()
+for user in users:
+    print(user.id, user.name, user.email)
+
