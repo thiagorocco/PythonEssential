@@ -47,4 +47,18 @@ class User:
             user.id = row[0]
             users.append(user)
         return users
-     
+
+    @staticmethod
+    def get_by_id(user_id):
+        conn = User.connect()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM users WHERE id = ?', (user_id))
+        row = cursor.fetchone()
+        conn.close()
+        if row:
+            user = User(row[1], row[2])
+            user.id = row[0]
+            return user
+        return None
+    
+    def update
