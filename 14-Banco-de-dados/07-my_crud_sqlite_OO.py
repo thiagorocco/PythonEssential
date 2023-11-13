@@ -71,7 +71,7 @@ class User:
     def delete(self):
         conn = User.connect()
         cursor = conn.cursor()
-        cursor.execute('DELETE FROM users WHERE id = ?',(self.id))
+        cursor.execute('DELETE FROM users WHERE id = ?',(self.id,))
         conn.commit()
         conn.close()
 
@@ -79,13 +79,13 @@ class User:
 
 #Inserindo um registro - CREATE
 #User.create_table()
-#user = User('Cristiane de Rocco','crisfl2009@hotmail.com')
+#user = User('Silvio Santos','ss@hotmail.com')
 #user.create()
 
 #Obtendo todos os usuários - READ
-#users = User.read()
-#for user in users:
-#    print(user.id, user.name, user.email)
+users = User.read()
+for user in users:
+    print(user.id, user.name, user.email)
 
 '''
 Obtendo um usuário pelo id
@@ -96,7 +96,8 @@ else:
     print('Usuário não encontrado')
 '''
 
-#Atualizar um usuário
+'''
+###  Atualizar um usuário ###
 user = User.get_by_id(1)
 if user:
     user.name = 'Thiago Richter de Rocco'
@@ -109,3 +110,13 @@ users = User.read()
 for user in users:
     print(user.id, user.name, user.email)
 
+'''
+'''
+#Delete
+user = User.get_by_id(3)
+if user:
+    user.delete()
+    print('Usuário excluído com sucesso')
+else:
+    print('Usuário não encontrado')
+'''
