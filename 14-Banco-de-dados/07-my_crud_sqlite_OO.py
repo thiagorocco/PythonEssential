@@ -52,7 +52,7 @@ class User:
     def get_by_id(user_id):
         conn = User.connect()
         cursor = conn.cursor()
-        cursor.execute('SELECT * FROM users WHERE id = ?', (user_id))
+        cursor.execute('SELECT * FROM users WHERE id = ?', (user_id,))
         row = cursor.fetchone()
         conn.close()
         if row:
@@ -83,7 +83,13 @@ class User:
 #user.create()
 
 #Obtendo todos os usuários - READ
-users = User.read()
-for user in users:
-    print(user.id, user.name, user.email)
+#users = User.read()
+#for user in users:
+#    print(user.id, user.name, user.email)
 
+#Obtendo um usuário pelo id
+user = User.get_by_id(1)
+if user:
+    print(user.id, user.name, user.email)
+else:
+    print('Usuário não encontrado')
