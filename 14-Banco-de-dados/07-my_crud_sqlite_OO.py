@@ -87,9 +87,25 @@ class User:
 #for user in users:
 #    print(user.id, user.name, user.email)
 
-#Obtendo um usuário pelo id
+'''
+Obtendo um usuário pelo id
 user = User.get_by_id(1)
 if user:
     print(user.id, user.name, user.email)
 else:
     print('Usuário não encontrado')
+'''
+
+#Atualizar um usuário
+user = User.get_by_id(1)
+if user:
+    user.name = 'Thiago Richter de Rocco'
+    user.email = 'deroccotr@gmail.com'
+    user.update()
+else:
+    print('Usuário não encontrado')
+
+users = User.read()
+for user in users:
+    print(user.id, user.name, user.email)
+
