@@ -1,59 +1,66 @@
 from sqlalchemy import create_engine, Column, Integer, String, Sequence
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import os
 
 # Criar uma instância do mecanismo SQLAlchemy e conectar-se a um banco de dados SQLite em memória
-engine = create_engine('sqlite:///banco.db', echo=True)
+engine = create_engine('sqlite:///banco.db', echo=False)
 
 # Criar uma classe de modelo para a tabela 'usuarios'
 Base = declarative_base()
 
-class Usuario(Base):
+class UserModel(Base):
     __tablename__ = 'usuarios'
-    id = Column(Integer, Sequence('usuario_id_seq'), primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     nome = Column(String(50))
     idade = Column(Integer)
 
 # Criar a tabela no banco de dados
 Base.metadata.create_all(engine)
 
-# Criar uma sessão para interagir com o banco de dados
-Session = sessionmaker(bind=engine)
-session = Session()
+class Crud:
 
-# Operações CRUD
+    def __init__(self, engine):
+        self.engine = engine
+        self.Session = sessionmaker(bind=engine)
 
-# Create (Criar um novo usuário)
-novo_usuario = Usuario(nome='John Doe', idade=25)
-session.add(novo_usuario)
-session.commit()
+    def create(self, nome, idade):
+        session = self.Session()
+        novo_usuario = UserModel(nome=nome, idade=idade)
+        session.add(novo_usuario)
+        session.commit()
+        session.close()
 
-# Read (Consultar todos os usuários)
-usuarios = session.query(Usuario).all()
-for usuario in usuarios:
-    print(f'ID: {usuario.id}, Nome: {usuario.nome}, Idade: {usuario.idade}')
+    def read(self):
+        session = self.Session()
+        usuarios = session.query(UserModel).all()
+        for usuario in usuarios:
+            print(f'ID: {usuario.id}, Nome: {usuario.nome}, Idade: {usuario.idade}')
+        session.close()    
 
-# Update (Atualizar um usuário)
-usuario_para_atualizar = session.query(Usuario).filter_by(nome='John Doe').first()
-if usuario_para_atualizar:
-    usuario_para_atualizar.idade = 26
-    session.commit()
+    def update(self, id, nome, idade):
+        session = self.Session()
+        usuario_para_atualizar = session.query(UserModel).filter_by(id=id).first()
+        if usuario_para_atualizar:
+            usuario_para_atualizar.nome = nome
+            usuario_para_atualizar.idade = idade
+            session.commit()
+        session.close()
 
-# Read (Consultar novamente após a atualização)
-usuarios_atualizados = session.query(Usuario).all()
-for usuario in usuarios_atualizados:
-    print(f'ID: {usuario.id}, Nome: {usuario.nome}, Idade: {usuario.idade}')
 
-# Delete (Excluir um usuário)
-usuario_para_excluir = session.query(Usuario).filter_by(nome='John Doe').first()
-if usuario_para_excluir:
-    session.delete(usuario_para_excluir)
-    session.commit()
+    def delete(self, id):
+        session = self.Session()
+        usuario_para_excluir = session.query(UserModel).filter_by(id=id).first()
+        if usuario_para_excluir:
+            session.delete(usuario_para_excluir)
+            session.commit()
+        session.close()
 
-# Read (Consultar novamente após a exclusão)
-usuarios_apos_exclusao = session.query(Usuario).all()
-if not usuarios_apos_exclusao:
-    print('Nenhum usuário encontrado após a exclusão.')
 
-# Fechar a sessão
-session.close()
+os.system('clear') or None
+usuario = Crud(engine)
+usuario.create('Peninha',70)
+usuario.read()
+
+
+
