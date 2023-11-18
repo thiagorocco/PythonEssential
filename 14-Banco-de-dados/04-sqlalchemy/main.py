@@ -59,7 +59,8 @@ class Crud:
 
 os.system('clear') or None
 usuario = Crud(engine)
-usuario.create('Peninha',70)
+#usuario.create('Peninha',70)
+#usuario.delete(5)
 usuario.read()
 
 
