@@ -1,17 +1,23 @@
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import datetime
+import config
+
+data = datetime.datetime.now()
+
+dataAtual = f'{data.day}/{data.month}/{data.year} às {data.hour}:{data.minute}:{data.second}'
 
 try:
-    senha = 'SuaSenha'
-    servidor_email = smtplib.SMTP('smtp.dominio.com.br', 587)
+    senha = config.senha
+    servidor_email = smtplib.SMTP(config.servidor, config.porta)
     servidor_email.starttls()
 
 
-    remetente = 'email@dominio.com.br'
-    destinatarios = ['email@dominio.com.br']
+    remetente = config.remetente
+    destinatarios = config.destinatarios
     assunto = 'Teste'
-    corpo_email = 'Olá, este é um email de teste.'
+    corpo_email = f'Olá, este é um email de teste enviado em {dataAtual}'
 
     mensagem = MIMEMultipart()
     mensagem['From'] = remetente
